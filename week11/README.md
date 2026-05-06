@@ -251,7 +251,9 @@ rv.setLayoutManager(new GridLayoutManager(this, 3));
 ```java
 // 在 ViewHolder 內或 onBindViewHolder 內加：
 holder.itemView.setOnClickListener(v -> {
-    String name = names.get(holder.getAdapterPosition());
+    // getBindingAdapterPosition() 是 RecyclerView 27.1.0+ 的標準方法
+    // 舊教材常見的 getAdapterPosition() 已 deprecated，IDE 會出黃線警告
+    String name = names.get(holder.getBindingAdapterPosition());
     Toast.makeText(v.getContext(), "你點了：" + name, Toast.LENGTH_SHORT).show();
 
     // 跳到下一頁
